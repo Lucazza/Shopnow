@@ -1,0 +1,30 @@
+services:
+  shop-1:
+    build: ./app
+    environment:
+      - SERVER_ID=LOJA_01
+    ports:
+      - "5001:5000" # Acesso direto opcional
+
+  shop-2:
+    build: ./app
+    environment:
+      - SERVER_ID=LOJA_02
+    ports:
+      - "5002:5000"
+
+  shop-3:
+    build: ./app
+    environment:
+      - SERVER_ID=LOJA_03
+    ports:
+      - "5003:5000"
+
+  load-balancer:
+    build: ./balancer
+    ports:
+      - "9000:8080" # Porta principal exposta
+    depends_on:
+      - shop-1
+      - shop-2
+      - shop-3

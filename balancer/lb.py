@@ -39,7 +39,7 @@ def get_server_random():
 @app.route('/')
 def proxy():
     # Mude aqui para testar o outro algoritmo: get_server_random()
-    target_server = get_server_round_robin() 
+    target_server = get_server_round_robin()
     
     if not target_server:
         return jsonify({"error": "Nenhum servidor disponível!"}), 503
